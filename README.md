@@ -1,9 +1,5 @@
 # auth_demo
 
----
-
-## Introduzione e Contestualizzazione
-
 Durante il mio percorso di tirocinio extracurriculare presso un’azienda di sviluppo software e web, ho avuto modo di affrontare il procedimento per la gestione dell’autenticazione durante un progetto di una web app (database, back end, front end). In seguito al tirocinio, durante la creazione di alcuni miei piccoli progetti di web app (per l’arricchimento del portfolio), ho deciso di creare una demo totalmente dedicata all’autenticazione: registrazione e autenticazione. 
 
 Il motivo di questa mia idea è perché avere una demo e una documentazione sull’autenticazione può risultare un buon ‘starter kit’ per futuri progetti, magari anche lavorativi.
