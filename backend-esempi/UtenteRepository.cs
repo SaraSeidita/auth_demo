@@ -6,26 +6,32 @@ using template_servizi.Models;
 using template_servizi.Query;
 using template_servizi.Static;
 
+
+// A differenza dell'auth repository e controller (che gestisce l'autenticazione, generazione e decodifica dei token), l'utente repository e controller gestiscono le operazioni CRUD (Create, Read, Update, Delete) sugli utenti nel database.
 namespace template_servizi.Repository
 {
-    public interface IUtenteRepository
+    public interface IUtenteRepository // l'interfaccia IUtenteRepository definisce i metodi per accedere e manipolare i dati degli utenti nel database, come ottenere un utente per username o ID, incrementare la versione del token e salvare un utente (creazione o modifica).
     {
       
         public UtenteModel? OttieniPerUsername(string username);
         public UtenteModel? OttieniPerId(int idUtente);
         public UtenteModel? IncrementaVersioneToken(int idUtente);
 
+        List<UtenteRicercaModel> RicercaUtente(UtenteQuery query); // ritorna un utente in base ai criteri di ricerca specificati nella query, oppure null se non viene trovato nessun utente corrispondente.
+
         // nuovo metodo da implementare: la creazione o modifica dell'utente 
         int? Salva(UtenteSaveModel utente); // ritorna l'ID dell'utente salvato, o lo crea se non esiste, oppure lo aggiorna se esiste già. Se l'operazione fallisce, ritorna null.
+
+        int? Cancella(int ID); // se l'utente viene cancellato, ritorna l'ID dell'utente cancellato, altrimenti ritorna null.
+
+        // ricerca utente
         
-        
-        //int? Cancella(int ID); // per implementazione futura: ritorna l'ID dell'utente cancellato, oppure null se l'operazione fallisce.
 
 
     }
 
 
-    public class UtenteRepository : IUtenteRepository
+    public class UtenteRepository : IUtenteRepository // mentre la classe implementa i metodi definiti nell'interfaccia, utilizzando SQLConnector per eseguire stored procedure nel database e restituire i risultati come oggetti UtenteModel o ID dell'utente salvato.
     {
         private readonly string? _conString;
         private readonly IConfiguration _configuration;
@@ -38,6 +44,23 @@ namespace template_servizi.Repository
 
 
 
+        // ricerca utente 
+
+        public List<UtenteRicercaModel> RicercaUtente(UtenteQuery query)
+        {
+            if (string.IsNullOrEmpty(_conString)) return new List<UtenteRicercaModel>();
+
+            var paramList = new List<SqlParameter>
+        {
+            new SqlParameter("@Query", (object?)query.Query ?? DBNull.Value)
+        };
+
+                return SQLConnector.GetListFromStoredProcedure<UtenteRicercaModel>(
+                    "[dbo].[Utente_Ricerca]",
+                    _conString,
+                    paramList
+                );
+        }
 
         public UtenteModel? OttieniPerUsername(string username)
         {
@@ -116,28 +139,27 @@ namespace template_servizi.Repository
         // per implementazioni future, potrei aggiungere un metodo per cancellare un utente dal database, ma per ora lo lascio commentato.
         // gestisco la cancellazione di un utente dal database
 
-        //public int? Cancella(int ID)
-        //{
-        //    List<SqlParameter> paramList = new()
-        //    {
-        //        new SqlParameter("@ID", ID)
-        //    };
+        public int? Cancella(int ID)
+        {
+            List<SqlParameter> paramList = new()
+            {
+                new SqlParameter("@ID", ID)
+            };
 
-        //    int? idCancellato = null;
+            int? idCancellato = null;
 
-        //    if (_conString != null)
-        //    {
-        //        idCancellato = SQLConnector.ExecuteScalarStoredProcedure<int>(
-        //            "[dbo].[Videogioco_Cancella]", _conString, paramList);
-        //    }
+            if (_conString != null)
+            {
+                idCancellato = SQLConnector.ExecuteScalarStoredProcedure<int>(
+                    "[dbo].[Utente_cancella]", _conString, paramList);
+            }
 
-        //    return idCancellato;
-        //}
+            return idCancellato;
+        }
 
     }
 
-    // ora si passa a creare e implementare l'utente controller in un nuovo file UtenteController.cs, che sarà il controller per gestire le richieste relative agli utenti, come la creazione di un nuovo utente, l'ottenimento di un utente per username o id, e l'incremento della versione del token.
-
+     
 
 }
 
