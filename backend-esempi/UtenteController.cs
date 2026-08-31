@@ -70,13 +70,13 @@ namespace template_servizi.Controllers
                 }
 
 
-
                 // GESTIONE HASH PASSWORD: 
                 // Se la password è presente (es. nuova registrazione o cambio password), ne calcoliamo l'hash
                 if (!string.IsNullOrWhiteSpace(model.Pw))
                 {
                     model.Pw = Utility.Hash(model.Pw);
                 }
+
 
                 // Salva l'utente tramite il repository
                 int? idUtente = _utenteRepo.Salva(model);
