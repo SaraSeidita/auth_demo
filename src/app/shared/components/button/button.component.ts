@@ -30,9 +30,13 @@ export class Button {
   buttonClasses(): string {
     const base = [
       // Dimensioni dal design: 338x60, r:8
+      'm-2',
       'h-[60px] rounded-lg',
       // Bordo: 3px #450979 (inside → usa box-border + ring o border)
       'border-[3px] border-[#450979]',
+      'border-4',
+      'border-[#312244]',
+      'shadow-[6px_6px_0px_#312244]',
       // Testo: Press Start 2P, 24px, nero, centrato
       "font-['Press_Start_2P'] text-[24px] text-black",
       'uppercase tracking-normal',

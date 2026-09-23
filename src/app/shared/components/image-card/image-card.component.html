@@ -1,1 +1,7 @@
-<p>image-card works!</p>
+<div [class]="cardClasses()">
+  <img 
+    [src]="imageSrc()" 
+    [alt]="label()" 
+    class="max-w-[70%] max-h-[70%] object-contain"
+  />
+</div>

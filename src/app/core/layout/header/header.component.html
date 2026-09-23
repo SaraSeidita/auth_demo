@@ -1,1 +1,20 @@
-<p>header works!</p>
+<div class="w-full h-12 flex items-center justify-between px-6">
+  
+  <!-- Ora con cuoricino -->
+  <span class="font-['rubik'] text-sm font-medium text-[#312244] flex items-center gap-1">
+    <span class="text-[#ff69b4]">♡</span>
+    12:30
+  </span>
+
+  <!-- Icone di sistema dinamiche -->
+  <div class="flex items-center gap-2">
+    @for (icon of iconeStatusBar; track icon.alt) {
+      <img 
+        [src]="icon.src" 
+        [alt]="icon.alt" 
+        class="h-4 w-auto object-contain"
+      >
+    }
+  </div>
+
+</div>

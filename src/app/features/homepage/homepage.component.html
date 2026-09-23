@@ -1,11 +1,47 @@
-<app-button
-  label="REGISTRATI"
-  variant="pink"
+<!-- Contenitore principale dello "schermo" del cellulare -->
+<div class="relative w-full max-w-sm mx-auto min-h-screen flex flex-col justify-between bg-[url('assets/wallpaper.jpg')] bg-[#fdf8f2]">
   
-/>
+  <!-- 1. Header a tutta larghezza in alto -->
+  <app-header class="w-full"></app-header>
+  
+  <!-- 2. Contenuto centrale con il suo padding laterale dedicato (px-6) -->
+  <div class="flex flex-col items-center justify-center px-6 my-auto ">
+    
+    <!-- image-card -->
+    <div class="mt-4">
+      <app-image-card 
+        variant="homepage" 
+        imageSrc="assets/image-card/homepage.png" 
+        label="Pikachu">
+      </app-image-card>
+    </div>
 
-<app-button
-  label="LOGIN"
-  variant="orange"
-  
-/>
+    <!-- titolo app -->
+    <div class="flex flex-col items-center text-center my-6">
+      <h1 class="font-['Jersey_20'] text-6xl text-[#312244] mb-2">Demo</h1>
+      <p class="font-['Jersey_20'] text-xs text-[#ff69b4] flex items-center gap-1">
+        <span class='text-[#ff69b4]'>♡</span> La mia demo Starter Kit Auth <span class='text-[#ff69b4]'>♡</span>
+      </p>
+    </div>
+
+    <!-- navigazione -->
+    <div class="flex flex-col items-center gap-4 w-full">
+      <app-button
+        label="REGISTRATI"
+        variant="pink"
+        (clicked)="onClickRegister()">
+      </app-button>
+
+      <app-button
+        label="LOGIN"
+        variant="orange"
+        (clicked)="onClickLogin()">
+      </app-button>
+    </div>
+
+  </div>
+
+  <!-- 3. Footer a tutta larghezza in basso -->
+  <app-footer class="w-full"></app-footer>
+
+</div>

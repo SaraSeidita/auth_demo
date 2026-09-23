@@ -1,0 +1,1 @@
+export type ImageCardVariant = 'homepage' | 'login' | 'register';

@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css',
   templateUrl: './header.component.html',
 })
-export class Header {}
+export class Header {
+
+  iconeStatusBar = [
+    { src: 'assets/icons/signal.svg', alt: 'signal' },
+    { src: 'assets/icons/wifi.svg', alt: 'wifi' },
+    { src: 'assets/icons/batteria.svg', alt: 'batteria' },
+  ];
+
+
+
+}
