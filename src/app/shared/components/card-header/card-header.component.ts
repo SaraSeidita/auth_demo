@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './card-header.component.css',
   templateUrl: './card-header.component.html',
 })
-export class CardHeader {}
+export class CardHeader {
+  title = input<string>('');
+}

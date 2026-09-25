@@ -1,5 +1,91 @@
-<app-image-card 
-  variant="register" 
-  imageSrc="assets/image-card/register.png" 
-  label="Jigglypuff">
-</app-image-card>
+<div
+  class="relative w-full max-w-sm mx-auto min-h-screen
+         flex flex-col justify-between
+         bg-[url('assets/wallpaper.jpg')]
+         bg-[#fdf8f2]"
+>
+
+  <app-header class="w-full"></app-header>
+
+  <div
+    class="flex flex-col
+           items-center
+           justify-center
+           px-4
+           my-auto
+           gap-3"
+  >
+
+    <app-image-card
+      variant="register"
+      imageSrc="assets/image-card/register.png"
+      label="Jigglypuff">
+    </app-image-card>
+
+    <app-form-card title="Inserisci i tuoi dati">
+
+      <form
+        /* [formGroup]="registerForm" */
+        (ngSubmit)="onRegister()"
+        class="w-[275px]
+               flex
+               flex-col
+               items-center
+               gap-3"
+      >
+
+        <app-input
+          label="Username"
+          placeholder="Popone123..."
+          formControlName="username">
+        </app-input>
+
+        <app-input
+          label="Email"
+          type="email"
+          placeholder="nome@gmail.com.."
+          formControlName="email">
+        </app-input>
+
+        <app-password-input
+          label="Password"
+          formControlName="password">
+        </app-password-input>
+
+        <app-password-input
+          label="Conferma password"
+          formControlName="confirmPassword">
+        </app-password-input>
+
+      </form>
+
+    </app-form-card>
+
+    <app-button
+      label="REGISTRATI"
+      variant="pink"
+      (clicked)="onRegister()">
+    </app-button>
+
+    <div class="flex flex-col items-center text-center my-1">
+      <p
+        class="font-['Jersey_20']
+               text-xs
+               text-[#837093]
+               flex items-center gap-1"
+      >
+        Hai già un account?
+        <a
+          href="login"
+          class="text-[#312244] font-bold"
+        >
+          Login
+        </a>
+      </p>
+    </div>
+
+  </div>
+
+  <app-footer class="w-full"></app-footer>
+
+</div>
