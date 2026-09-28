@@ -1,5 +1,94 @@
-<app-image-card 
-  variant="register" 
-  imageSrc="assets/image-card/login.png" 
-  label="Jigglypuff">
-</app-image-card>
+<div
+  class="relative w-full max-w-sm mx-auto min-h-screen
+         flex flex-col justify-between
+         bg-[url('assets/wallpaper.jpg')]
+         bg-[#fdf8f2]"
+>
+
+  <!-- 1. header -->
+
+  <app-header class="w-full"></app-header>
+
+  <!-- 2. contenuto centrale -->
+  <div
+    class="flex flex-col
+           items-center
+           justify-center
+           px-4
+           my-auto
+           gap-3"
+  >
+
+  <!-- image card -->
+    <app-image-card 
+      variant="register" 
+      imageSrc="assets/image-card/login.png" 
+      label="Jigglypuff">
+    </app-image-card>
+
+    <app-form-card title="Bentornato" type="login">
+
+      <form
+        /* [formGroup]="loginForm" */
+        (ngSubmit)="onLogin()"
+        class="w-[275px]
+               flex
+               flex-col
+               items-center
+               gap-3"
+      >
+
+        <app-input
+          label="Username"
+          placeholder="Popone123..."
+          formControlName="username">
+        </app-input>
+
+        <app-password-input
+          label="Password"
+          formControlName="password">
+        </app-password-input>
+
+      </form>
+
+      <!-- // spunta "ricordati di me" e link "password dimenticata" -->
+      <div class="w-full flex justify-between items-center px-1">
+        <app-checkbox label="Ricordami" />   
+        <a
+          href="forgot-password"
+          class="text-[#312244] font-bold text-xs"
+        >
+          Password dimenticata?
+        </a>
+      </div>
+    </app-form-card>
+
+    <app-button
+      label="LOGIN"
+      variant="orange"
+      (clicked)="onLogin()">
+    </app-button>
+
+    <div class="flex flex-col items-center text-center my-1">
+      <p
+        class="font-['Jersey_20']
+               text-xs
+               text-[#837093]
+               flex items-center gap-1"
+      >
+        Non hai un account?
+        <a
+          href="register"
+          class="text-[#312244] font-bold"
+        >
+          Registrati
+        </a>
+      </p>
+    </div>
+
+
+  </div>  
+
+<app-footer class="w-full"></app-footer>
+
+</div>

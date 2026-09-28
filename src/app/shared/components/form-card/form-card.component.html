@@ -1,6 +1,5 @@
 <div
   class="w-[346px]
-         h-[387px]
          bg-white
          border-[4px]
          border-[#450979]
@@ -9,8 +8,9 @@
          overflow-visible
          flex
          flex-col
-         items-center
+         items-center 
          gap-[10px]"
+         [class]="cardHeightClass()"
 >
   <app-card-header [title]="title()"></app-card-header>
 

@@ -1,0 +1,33 @@
+<label class="flex flex-row items-center gap-2 p-2 cursor-pointer group select-none">
+  <div class="relative flex items-center justify-center">
+    <!-- Input nativo nascosto -->
+    <input
+      type="checkbox"
+      [checked]="checked()"
+      class="peer sr-only"
+    />
+
+    <!-- Box -->
+    <div
+      class="w-[18px] h-[18px] bg-white border-2 border-[#312244] rounded-[4px] transition-all duration-150
+             peer-checked:bg-[#FFE9E9] peer-checked:border-[#450979]"
+    ></div>
+
+    <!-- Icona Check SVG -->
+    <svg
+      class="absolute w-3.5 h-3.5 text-[#312244] scale-0 transition-transform duration-150 ease-out 
+             peer-checked:scale-100 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="3.5"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+    </svg>
+  </div>
+
+  <!-- Testo della Label -->
+  <span class="font-['Rubik'] text-[13px] text-[#000000]">
+    {{ label() }}
+  </span>
+</label>
