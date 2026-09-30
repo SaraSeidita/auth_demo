@@ -1,1 +1,71 @@
-<p>profile works!</p>
+<div
+  class="relative w-full max-w-sm mx-auto min-h-screen
+         flex flex-col justify-between
+         bg-[url('assets/wallpaper.jpg')]
+         bg-[#fdf8f2]"
+>
+
+  <!-- 1. Header -->
+  <app-header class="w-full"></app-header>
+
+  <!-- 2. Contenuto centrale -->
+  <div
+    class="flex flex-col
+           items-center
+           justify-center
+           px-4
+           my-auto
+           gap-3"
+  >
+
+    <!-- Card Profilo Singola -->
+    <app-form-card title="Profilo utente" type="profile">
+
+      <app-avatar
+        imageSrc="assets/profile.jpg"
+        label="Jigglypuff"
+        size="large">
+      </app-avatar>
+
+      <!-- Username modificabile -->
+      <app-profile-row
+        label="Username"
+        [(ngModel)]="userData.username"
+        placeholder="Inserisci username">
+      </app-profile-row>
+
+      <!-- Email modificabile -->
+      <app-profile-row
+        label="Email"
+        [(ngModel)]="userData.email"
+        placeholder="Inserisci email">
+      </app-profile-row>
+
+      <!-- Ruolo non modificabile -->
+      <app-profile-row
+        label="Ruolo"
+        [(ngModel)]="userData.role"
+        [disabled]="true">
+      </app-profile-row>
+
+    </app-form-card>
+
+    <!-- Bottoni d'azione -->
+    <app-button
+      label="MODIFICA"
+      variant="green"
+      (clicked)="onUpdate()">
+    </app-button>
+
+    <app-button
+      label="LOGOUT"
+      variant="yellow"
+      (clicked)="onLogout()">
+    </app-button>
+
+  </div>
+
+  <!-- 3. Footer -->
+  <app-footer class="w-full"></app-footer>
+
+</div>

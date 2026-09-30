@@ -18,6 +18,7 @@ export class FormCard {
   private heightMap: Record<CardHeightVariant, string> = {
     login: 'h-[247px]',
     register: 'h-[400px]',
+    profile: 'h-[507px]'
   };
 
 

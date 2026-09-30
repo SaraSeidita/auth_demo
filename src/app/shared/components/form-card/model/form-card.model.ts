@@ -1,1 +1,1 @@
-export type CardHeightVariant = 'register' | 'login' ;
+export type CardHeightVariant = 'register' | 'login' | 'profile';
