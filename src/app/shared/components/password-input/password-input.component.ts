@@ -29,8 +29,8 @@ export class PasswordInput implements ControlValueAccessor {
   // uguale a InputComponent
   
   writeValue(val: any): void {
-    this.value = val; // Aggiorna il valore del campo di input
-  }
+  this.value = val ?? ''; // assicura che val non sia mai null o undefined
+}
 
   registerOnChange(fn: any): void {
     this.onChange = fn; // Registra la funzione di callback per il cambiamento del valore

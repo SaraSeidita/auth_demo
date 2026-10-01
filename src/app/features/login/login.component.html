@@ -4,12 +4,10 @@
          bg-[url('assets/wallpaper.jpg')]
          bg-[#fdf8f2]"
 >
-
-  <!-- 1. header -->
-
+  <!-- 1. Header -->
   <app-header class="w-full"></app-header>
 
-  <!-- 2. contenuto centrale -->
+  <!-- 2. Contenuto centrale -->
   <div
     class="flex flex-col
            items-center
@@ -18,8 +16,7 @@
            my-auto
            gap-3"
   >
-
-  <!-- image card -->
+    <!-- Image Card -->
     <app-image-card 
       variant="register" 
       imageSrc="assets/image-card/login.png" 
@@ -27,46 +24,58 @@
     </app-image-card>
 
     <app-form-card title="Bentornato" type="login">
-
       <form
-        /* [formGroup]="loginForm" */
-        (ngSubmit)="onLogin()"
+        [formGroup]="credential"
+        (ngSubmit)="onLogin()"   
         class="w-[275px]
                flex
                flex-col
                items-center
                gap-3"
       >
-
         <app-input
           label="Username"
           placeholder="Popone123..."
-          formControlName="username">
+          formControlName="username"
+          name="username"
+        >
         </app-input>
 
         <app-password-input
           label="Password"
-          formControlName="password">
+         formControlName="pw"
+          name="pw"
+        >
         </app-password-input>
 
+        <div class="w-full flex justify-between items-center px-1">
+          <app-checkbox 
+            label="Ricordami" 
+            
+            name="rememberMe" 
+          />   
+          <a
+            routerLink="/forgot-password"
+            class="text-[#312244] font-bold text-xs"
+          >
+            Password dimenticata?
+          </a>
+        </div>
       </form>
-
-      <!-- // spunta "ricordati di me" e link "password dimenticata" -->
-      <div class="w-full flex justify-between items-center px-1">
-        <app-checkbox label="Ricordami" />   
-        <a
-          href="forgot-password"
-          class="text-[#312244] font-bold text-xs"
-        >
-          Password dimenticata?
-        </a>
-      </div>
     </app-form-card>
 
+    @if (errorMessage()) {
+      <span class="error-tooltip bg-red-500 text-white p-2 rounded text-xs text-center w-[275px]">
+        {{ errorMessage() }}
+      </span>
+    }
+
     <app-button
-      label="LOGIN"
+      [label]="isLoading() ? 'Logging in...' : 'LOGIN'"
       variant="orange"
-      (clicked)="onLogin()">
+      (clicked)="onLogin()"
+      [disabled]="isLoading()"
+    >
     </app-button>
 
     <div class="flex flex-col items-center text-center my-1">
@@ -78,17 +87,14 @@
       >
         Non hai un account?
         <a
-          href="register"
+          routerLink="/register"
           class="text-[#312244] font-bold"
         >
           Registrati
         </a>
       </p>
     </div>
-
-
   </div>  
 
-<app-footer class="w-full"></app-footer>
-
+  <app-footer class="w-full"></app-footer>
 </div>

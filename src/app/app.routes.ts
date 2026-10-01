@@ -9,6 +9,6 @@ export const routes: Routes = [
     { path: '', component: Homepage },
     { path: 'login', component: Login },
     { path: 'register', component: Register },
-    { path: 'profile', component: Profile }, // Assuming you want to navigate to the homepage for the profile route
+    { path: 'profile/:id', component: Profile }, // Assuming you want to navigate to the homepage for the profile route
     { path: '**', redirectTo: '' } // Redirect any unknown paths to the homepage
 ];

@@ -1,20 +1,8 @@
-<div
-  class="relative w-full max-w-sm mx-auto min-h-screen
-         flex flex-col justify-between
-         bg-[url('assets/wallpaper.jpg')]
-         bg-[#fdf8f2]"
->
+<div class="relative w-full max-w-sm mx-auto min-h-screen flex flex-col justify-between bg-[url('assets/wallpaper.jpg')] bg-[#fdf8f2]">
 
   <app-header class="w-full"></app-header>
 
-  <div
-    class="flex flex-col
-           items-center
-           justify-center
-           px-4
-           my-auto
-           gap-3"
-  >
+  <div class="flex flex-col items-center justify-center px-4 my-auto gap-3">
 
     <app-image-card
       variant="register"
@@ -25,15 +13,10 @@
     <app-form-card title="Inserisci i tuoi dati" type="register">
 
       <form
-        /* [formGroup]="registerForm" */
+        [formGroup]="registerForm"
         (ngSubmit)="onRegister()"
-        class="w-[275px]
-               flex
-               flex-col
-               items-center
-               gap-3"
+        class="w-[275px] flex flex-col items-center gap-3"
       >
-
         <app-input
           label="Username"
           placeholder="Popone123..."
@@ -49,18 +32,26 @@
 
         <app-password-input
           label="Password"
-          formControlName="password">
+          formControlName="pw">
         </app-password-input>
 
         <app-password-input
           label="Conferma password"
-          formControlName="confirmPassword">
+          formControlName="confirmPw">
         </app-password-input>
+
+        <!-- Control flow nativo per il messaggio d'errore -->
+        @if (errorMessage()) {
+          <p class="text-red-600 text-xs font-bold text-center mt-1">
+            {{ errorMessage() }}
+          </p>
+        }
 
       </form>
 
     </app-form-card>
 
+    <!-- Bottone di submit -->
     <app-button
       label="REGISTRATI"
       variant="pink"
@@ -68,17 +59,9 @@
     </app-button>
 
     <div class="flex flex-col items-center text-center my-1">
-      <p
-        class="font-['Jersey_20']
-               text-xs
-               text-[#837093]
-               flex items-center gap-1"
-      >
+      <p class="font-['Jersey_20'] text-xs text-[#837093] flex items-center gap-1">
         Hai già un account?
-        <a
-          href="login"
-          class="text-[#312244] font-bold"
-        >
+        <a routerLink="/login" class="text-[#312244] font-bold">
           Login
         </a>
       </p>

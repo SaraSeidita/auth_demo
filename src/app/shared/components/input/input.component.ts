@@ -24,8 +24,8 @@ export class Input implements ControlValueAccessor { // ControlValueAccessor int
   onTouched: any = () => {} // Funzione di callback per notificare che il campo è stato toccato
 
   writeValue(val: any): void {
-    this.value = val; // Aggiorna il valore del campo di input
-  }
+  this.value = val ?? ''; // assicura che val non sia mai null o undefined
+}
 
   registerOnChange(fn: any): void {
     this.onChange = fn; // Registra la funzione di callback per il cambiamento del valore
