@@ -8,9 +8,11 @@ export interface LoginDTO {
 
 // struttura dell'Utente restituito dal backend
 export interface UserProfile { // userProfile è un'interfaccia che rappresenta il profilo di un utente autenticato, con proprietà come id, username, email e token di autenticazione
+    id: number;
     username: string; 
     email: string;
     ruolo: string;
+    profilePicProfile?: string | null;  // URL o percorso dell'immagine del profilo dell'utente
 }
 
 // risposta completa del backend per la richiesta di login, che include un flag di successo, un messaggio e i dati dell'utente autenticato

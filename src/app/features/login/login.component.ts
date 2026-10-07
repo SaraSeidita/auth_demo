@@ -47,42 +47,37 @@ export class Login {
   isLoading = signal<boolean>(false);
 
   onLogin(): void {
-    
-    this.isLoading.set(true);
-    this.errorMessage.set(null);
+  this.isLoading.set(true);
+  this.errorMessage.set(null);
 
-    if (this.credential.invalid) {
-      this.errorMessage.set('Inserisci tutti i campi correttamente');
-      this.credential.markAllAsTouched();
-      this.isLoading.set(false);
-      return;
-    }
-
-    const formValues = this.credential.getRawValue(); // Ottieni i valori del form come oggetto LoginDTO
-
-    const payload: LoginDTO = {
-      username: formValues.username!,
-      pw: formValues.pw!
-    };
-
-    // Inviamo l'oggetto DTO direttamente al servizio
-    this.authServices.login(payload).subscribe({
-      next: (res) => {
-        console.log('Login successful:', res);
-        this.isLoading.set(false);
-        this.credential.reset();
-        
-        // Navigazione eseguita nel 'next' della chiamata HTTP
-        this.routing.navigate(['profile']);
-      },
-      error: (err) => {
-        this.isLoading.set(false);
-        if (err.status === 401) {
-          this.errorMessage.set('Credenziali non valide');
-        } else {
-          this.errorMessage.set('Errore di connessione. Riprova più tardi.');
-        }
-      }
-    });
+  if (this.credential.invalid) {
+    this.errorMessage.set('Inserisci tutti i campi correttamente');
+    this.credential.markAllAsTouched();
+    this.isLoading.set(false);
+    return;
   }
+
+  const payload: LoginDTO = this.credential.getRawValue() as LoginDTO;
+
+  this.authServices.login(payload).subscribe({
+    next: (res) => {
+      this.isLoading.set(false);
+
+      if (res.success && res.user?.id) {
+        // Ora res.user.id sarà un numero valido (es. 5)
+        this.routing.navigate(['/profile', res.user.id]);
+      } else {
+        this.errorMessage.set('Impossibile recuperare i dati dell\'utente.');
+      }
+    },
+    error: (err) => {
+      this.isLoading.set(false);
+      if (err.status === 401) {
+        this.errorMessage.set('Credenziali non valide');
+      } else {
+        this.errorMessage.set('Errore di connessione. Riprova più tardi.');
+      }
+    }
+  });
+}
 }

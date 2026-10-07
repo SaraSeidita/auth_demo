@@ -3,6 +3,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { LoginDTO, LoginResponse, UserProfile } from '../models/loginDTO.model';
 import { Observable, tap } from 'rxjs';
 import { registerDTO, RegisterResponse } from '../models/registerDTO.model';
+import { UserSaveDTO } from '../models/utente.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class AuthServices {
   // per l'url uso l'interceptor baseUrl
   private readonly loginUrl = '/Auth/Login';
   private readonly registerUrl = '/Utente/SalvaUtente';
+  private readonly salvaUrl = '/Utente/SalvaUtente';
 
 
   // signals per lo stato 
@@ -28,9 +30,32 @@ export class AuthServices {
   public currentUser = computed(() => this.userSignal());
 
   // metodo per effettuare la registrazione 
-    register(userData: registerDTO): Observable<RegisterResponse> {
+  register(userData: registerDTO): Observable<RegisterResponse> {
     return this._http.post<RegisterResponse>(this.registerUrl, userData);
-    }
+  }
+
+  // update utente usa sempre registetURL ma con l'id utente 
+
+  // auth.services.ts
+update(userData: UserSaveDTO): Observable<{ success: boolean; IDUtente?: number }> {
+  return this._http.post<{ success: boolean; IDUtente?: number }>(this.salvaUrl, userData).pipe(
+    tap(response => {
+      if (response.success) {
+        // Aggiorniamo il signal utente e il localStorage con i nuovi dati
+        const current = this.userSignal();
+        if (current) {
+          const updatedUser: UserProfile = {
+            ...current,
+            username: userData.username,
+            email: userData.email ?? current.email,
+          };
+          this.userSignal.set(updatedUser);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+        }
+      }
+    })
+  );
+}
 
   // metodo per effettuare il login
   login(credentials: LoginDTO) : Observable<LoginResponse> {
@@ -48,6 +73,10 @@ export class AuthServices {
         } 
       })
     );
+  }
+
+  getDettaglio(id: number): Observable<{success: boolean; data: UserProfile}> {
+    return this._http.get<{ success: boolean; data: UserProfile }>(`Utente/UtenteSingolo/${id}`);
   }
 
   logout(): void {

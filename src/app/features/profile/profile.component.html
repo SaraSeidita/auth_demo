@@ -18,50 +18,65 @@
            gap-3"
   >
 
-    <!-- Card Profilo Singola -->
-    <app-form-card title="Profilo utente" type="profile">
+    @if (isLoading()) {
+      <p class="text-sm font-bold text-[#837093]">Caricamento profilo...</p>
 
-      <app-avatar
-        imageSrc="assets/profile.jpg"
-        label="Jigglypuff"
-        size="large">
-      </app-avatar>
+    } 
+    
+    @else if 
+    
+    (profileData(); as user) {
 
-      <!-- Username modificabile -->
-      <app-profile-row
-        label="Username"
-        [(ngModel)]="userData.username"
-        placeholder="Inserisci username">
-      </app-profile-row>
+      <!-- Card Profilo Singola -->
+      <app-form-card title="Profilo utente" type="profile">
 
-      <!-- Email modificabile -->
-      <app-profile-row
-        label="Email"
-        [(ngModel)]="userData.email"
-        placeholder="Inserisci email">
-      </app-profile-row>
+        <app-avatar
+          [imageSrc]="user.profilePicProfile || 'assets/profile.jpg'"
+          
+          size="large">
+        </app-avatar>
 
-      <!-- Ruolo non modificabile -->
-      <app-profile-row
-        label="Ruolo"
-        [(ngModel)]="userData.role"
-        [disabled]="true">
-      </app-profile-row>
+        <!-- Username modificabile -->
+        <app-profile-row
+          label="Username"
+          [ngModel]="user.username"
+          (ngModelChange)="onFieldChange('username', $event)"
+          placeholder="Inserisci username">
+        </app-profile-row>
 
-    </app-form-card>
+        <!-- Email modificabile -->
+        <app-profile-row
+          label="Email"
+          [ngModel]="user.email"
+          (ngModelChange)="onFieldChange('email', $event)"
+          placeholder="Inserisci email">
+        </app-profile-row>
 
-    <!-- Bottoni d'azione -->
-    <app-button
-      label="MODIFICA"
-      variant="green"
-      (clicked)="onUpdate()">
-    </app-button>
+        <!-- Ruolo non modificabile -->
+        <app-profile-row
+          label="Ruolo"
+          [ngModel]="user.ruolo"
+          [disabled]="true">
+        </app-profile-row>
 
-    <app-button
-      label="LOGOUT"
-      variant="yellow"
-      (clicked)="onLogout()">
-    </app-button>
+      </app-form-card>
+
+      <!-- Bottoni d'azione -->
+      <app-button
+        label="MODIFICA"
+        variant="green"
+        (clicked)="onUpdate()">
+      </app-button>
+
+      <app-button
+        label="LOGOUT"
+        variant="yellow"
+        (clicked)="onLogout()">
+      </app-button>
+
+    } @else {
+      <p class="text-sm text-red-500 font-bold">Impossibile caricare i dati del profilo.</p>
+    }
 
   </div>
 
