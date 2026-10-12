@@ -11,7 +11,8 @@
     <div class="mt-4">
       <app-image-card 
         variant="homepage" 
-        imageSrc="assets/image-card/homepage.png" 
+        [imageSrc]="_imageItem.src" 
+        [imageAlt]="_imageItem.alt"
         label="Pikachu">
       </app-image-card>
     </div>

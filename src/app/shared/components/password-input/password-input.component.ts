@@ -37,6 +37,7 @@ export class PasswordInput implements ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
+    // toccando l'input, il placeholder si nasconde
     this.onTouched = fn; // Registra la funzione di callback per il tocco del campo
   }
 

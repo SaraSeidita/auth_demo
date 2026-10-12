@@ -1,3 +1,5 @@
+// componente 'footer' che contiene il footer dell'applicazione
+
 import { Component } from '@angular/core';
 
 @Component({

@@ -14,6 +14,8 @@ Le tecnologie e software che ho deciso di utilizzare per questa demo sono le seg
 
 Per sviluppare la web app ho utilizzato tre software per l’implementazione:
 
+<!-- TODO: sistemare le versioni e le tecnologie documentate in base a quelle effettivamente usate. -->
+
 | Componente | Tecnologia / Software |
 | :--- | :--- |
 | **Database** | SQL Server |

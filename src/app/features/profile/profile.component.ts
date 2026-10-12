@@ -10,6 +10,7 @@ import { AuthServices } from '../../shared/services/auth.services';
 import { Router } from '@angular/router';
 import { UserProfile } from '../../shared/models/loginDTO.model';
 import { UserSaveDTO } from '../../shared/models/utente.model';
+import { ImageItem } from '../../shared/models/imageitem.model';
 
 @Component({
   imports: [Footer, Header, Button, FormCard, Avatar, ProfileRow, FormsModule],
@@ -20,6 +21,11 @@ import { UserSaveDTO } from '../../shared/models/utente.model';
 export class Profile implements OnInit {
   public authServices = inject(AuthServices);
   private routing = inject(Router);
+
+  _imageItem: ImageItem = {
+    src: 'assets/profile.jpg',
+    alt: 'profile image',
+  };
   
   idUtente = input<string>();
 

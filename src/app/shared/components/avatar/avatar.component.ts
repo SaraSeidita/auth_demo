@@ -9,6 +9,7 @@ import { Component, input } from '@angular/core';
 export class Avatar {
   title = 'Avatar Component';
   imageSrc = input.required<string>(); 
+  imageAlt = input.required<string>();
 
 
   avatarClasses(): string {

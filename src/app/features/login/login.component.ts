@@ -13,6 +13,7 @@ import { Checkbox } from '../../shared/components/checkbox/checkbox.component';
 
 import { AuthServices } from '../../shared/services/auth.services';
 import { LoginDTO } from '../../shared/models/loginDTO.model';
+import { ImageItem } from '../../shared/models/imageitem.model';
 
 @Component({
   imports: [
@@ -35,6 +36,11 @@ export class Login {
   private fb = inject(FormBuilder);
   public authServices = inject(AuthServices);
   private routing = inject(Router);
+
+  _imageItem: ImageItem = {
+    src: 'assets/image-card/login.png',
+    alt: 'login image',
+  };
 
   credential = this.fb.group({
     username: ['', [Validators.required]],

@@ -19,7 +19,8 @@
     <!-- Image Card -->
     <app-image-card 
       variant="register" 
-      imageSrc="assets/image-card/login.png" 
+      [imageSrc]="_imageItem.src"
+      [imageAlt]="_imageItem.alt"
       label="Jigglypuff">
     </app-image-card>
 
@@ -43,7 +44,7 @@
 
         <app-password-input
           label="Password"
-         formControlName="pw"
+          formControlName="pw"
           name="pw"
         >
         </app-password-input>

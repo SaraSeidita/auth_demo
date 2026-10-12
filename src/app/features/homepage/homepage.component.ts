@@ -4,6 +4,7 @@ import { ImageCard } from '../../shared/components/image-card/image-card.compone
 import { Router } from '@angular/router';
 import { Footer } from '../../core/layout/footer/footer.component';
 import { Header } from '../../core/layout/header/header.component';
+import { ImageItem } from '../../shared/models/imageitem.model';
 
 @Component({
   imports: [Button, ImageCard, Footer, Header],
@@ -15,6 +16,10 @@ export class Homepage {
 
   routing = inject(Router);
 
+  _imageItem: ImageItem = {
+    src: 'assets/image-card/homepage.png',
+    alt: 'homepage image',
+  };
 
   onClickRegister(): void {
     // Navigate to the register page when the button is clicked

@@ -12,6 +12,7 @@ import { PasswordInput } from '../../shared/components/password-input/password-i
 
 import { AuthServices } from '../../shared/services/auth.services';
 import { registerDTO } from '../../shared/models/registerDTO.model';
+import { ImageItem } from '../../shared/models/imageitem.model';
 
 @Component({
   selector: 'app-register',
@@ -34,6 +35,11 @@ export class Register {
   private fb = inject(FormBuilder);
   public authServices = inject(AuthServices);
   private routing = inject(Router);
+
+  _imageItem: ImageItem = {
+    src: 'assets/image-card/register.png',
+    alt: 'register image',
+  };
 
   errorMessage = signal<string | null>(null);
 

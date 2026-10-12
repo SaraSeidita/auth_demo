@@ -8,7 +8,7 @@
 
   <!-- Icone di sistema dinamiche -->
   <div class="flex items-center gap-2">
-    @for (icon of iconeStatusBar; track icon.alt) {
+    @for (icon of _iconsStatusBar; track icon.alt) {
       <img 
         [src]="icon.src" 
         [alt]="icon.alt" 

@@ -15,7 +15,7 @@ export class AuthServices {
 
   // per l'url uso l'interceptor baseUrl
   private readonly loginUrl = '/Auth/Login';
-  private readonly registerUrl = '/Utente/SalvaUtente';
+  // TODO: sistemare: registrazione e aggiornamento usano lo stesso URL duplicato.
   private readonly salvaUrl = '/Utente/SalvaUtente';
 
 
@@ -31,7 +31,7 @@ export class AuthServices {
 
   // metodo per effettuare la registrazione 
   register(userData: registerDTO): Observable<RegisterResponse> {
-    return this._http.post<RegisterResponse>(this.registerUrl, userData);
+    return this._http.post<RegisterResponse>(this.salvaUrl, userData);
   }
 
   // update utente usa sempre registetURL ma con l'id utente 

@@ -9,11 +9,11 @@ import { ImageCardVariant } from './model/image-card.model';
 })
 export class ImageCard {
 
-  label = input.required<string>();
   variant = input<ImageCardVariant>('homepage'); // Default variant is 'homepage'
   
   // Percorso dell'immagine PNG trasparente
-  imageSrc = input.required<string>(); 
+  imageSrc = input.required<string>(); // Percorso dell'immagine PNG trasparente
+  imageAlt = input.required<string>(); // Attributo alt per l'immagine
 
   // Mappa delle varianti basata sui colori dei mockup
   private variantMap: Record<ImageCardVariant, string> = {

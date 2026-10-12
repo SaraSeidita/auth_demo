@@ -31,8 +31,8 @@
       <app-form-card title="Profilo utente" type="profile">
 
         <app-avatar
-          [imageSrc]="user.profilePicProfile || 'assets/profile.jpg'"
-          
+          [imageSrc]="user.profilePicProfile || _imageItem.src"
+          [imageAlt]="_imageItem.alt"
           size="large">
         </app-avatar>
 

@@ -15,6 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   templateUrl: './input.component.html',
 })
 export class Input implements ControlValueAccessor { // ControlValueAccessor interface serve a collegare il componente personalizzato con il modulo di Angular Forms
+  // TODO: sistemare e uniformare il ControlValueAccessor con PasswordInput e ProfileRow.
   label = input<string>(''); // Etichetta del campo di input
   placeholder = input<string>(''); // Testo segnaposto visualizzato all'interno del campo di input quando è vuoto
   type = input<string>('text'); // Tipo di input (ad esempio, "text", "password", "email", ecc.)

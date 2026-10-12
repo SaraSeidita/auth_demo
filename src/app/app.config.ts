@@ -24,7 +24,6 @@ export const appConfig: ApplicationConfig = {
         authInterceptor // Interceptor per aggiungere l'header Authorization con il token di accesso alle richieste HTTP
       ]) ,
     ),
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideBrowserGlobalErrorListeners()
   ]
 };
