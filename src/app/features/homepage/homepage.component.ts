@@ -14,22 +14,20 @@ import { ImageItem } from '../../shared/models/imageitem.model';
 })
 export class Homepage {
 
-  routing = inject(Router);
+  routing = inject(Router); // Iniezione del servizio Router per la navigazione tra le pagine
 
-  _imageItem: ImageItem = {
+  _imageItem: ImageItem = { // Utilizzo dell'interfaccia ImageItem per rappresentare l'immagine della homepage
     src: 'assets/image-card/homepage.png',
     alt: 'homepage image',
   };
 
   onClickRegister(): void {
-    // Navigate to the register page when the button is clicked
-    console.log('Navigating to register page...');
-    this.routing.navigate(['register']); // Use the correct path for the register page
+    // bottone per navigare alla pagina di registrazione
+    this.routing.navigate(['register']); // path per la pagina di registrazione
   }
 
   onClickLogin(): void {
-    // Navigate to the login page when the button is clicked
-    console.log('Navigating to login page...');
-    this.routing.navigate(['login']); // Use the correct path for the login page
+    // bottone per navigare alla pagina di login
+    this.routing.navigate(['login']); // path per la pagina di login
   }
 }

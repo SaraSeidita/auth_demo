@@ -41,17 +41,20 @@
           formControlName="confirmPw">
         </app-password-input>
 
-        <!-- Control flow nativo per il messaggio d'errore -->
-        @if (errorMessage()) {
-          <p class="text-red-600 text-xs font-bold text-center mt-1">
-            {{ errorMessage() }}
-          </p>
-        }
+        
 
       </form>
 
     </app-form-card>
+    
+    <!-- Control flow nativo per il messaggio d'errore -->
+        @if (errorMessage()) {
+          <span class="error-tooltip bg-red-500 text-white p-2 rounded text-xs text-center w-[275px]">
+            {{ errorMessage() }}
+          </span>
+        }
 
+        
     <!-- Bottone di submit -->
     <app-button
       label="REGISTRATI"

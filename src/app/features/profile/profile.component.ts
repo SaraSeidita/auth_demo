@@ -27,20 +27,20 @@ export class Profile implements OnInit {
     alt: 'profile image',
   };
   
-  idUtente = input<string>();
+  idUtente = input<string>(); // Input per ricevere l'ID dell'utente come stringa, che verrà convertita in numero per le chiamate al servizio
 
-  profileData = signal<UserProfile | null>(null);
-  isLoading = signal<boolean>(true);
-
-  isSaving = signal<boolean>(false);
+  profileData = signal<UserProfile | null>(null); // Segnale per memorizzare i dati del profilo utente, inizialmente nullo
+  isLoading = signal<boolean>(true); // Segnale per gestire lo stato di caricamento dei dati del profilo, inizialmente vero (in attesa della risposta del servizio)
+ 
+  isSaving = signal<boolean>(false); // Segnale per gestire lo stato di salvataggio, inizialmente falso
 
   successMessage = signal<string | null>(null);
   errorMessage = signal<string | null>(null);
 
-  ngOnInit(): void {
-    const userId = Number(this.idUtente()) || this.authServices.currentUser()?.id;
+  ngOnInit(): void { // Metodo del ciclo di vita del componente che viene chiamato dopo l'inizializzazione del componente
+    const userId = Number(this.idUtente()) || this.authServices.currentUser()?.id; // Converte l'ID dell'utente da stringa a numero, se non è valido utilizza l'ID dell'utente corrente dal servizio AuthServices
 
-    if (!userId) {
+    if (!userId) { // Se non è stato possibile ottenere un ID valido, mostra un messaggio di errore e reindirizza alla pagina di login
       console.error('Utente non trovato');
       this.routing.navigate(['/login']);
       return;
