@@ -24,3 +24,9 @@ Per sviluppare la web app ho utilizzato tre software per l’implementazione:
 | **Version Control** | GitHub *(GIT)* |
 
 ---
+
+### Link dimostrazione demo
+
+### Link alla demo
+
+Se vuoi dare un'occhiata veloce al funzionamento del progetto, [guarda la demo su YouTube](https://www.youtube.com/shorts/hQKd4wXHePs).
