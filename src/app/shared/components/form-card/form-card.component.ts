@@ -22,7 +22,8 @@ export class FormCard {
   };
 
 
-  cardHeightClass = computed(() => this.heightMap[this.type()]);
+  cardHeightClass = computed(() => this.heightMap[this.type()]); // Calcola la classe CSS dell'altezza della card in base al tipo selezionato
+  // qua non serve una classe che concatena le classi CSS perché basta una sola classe per l'altezza della card, che viene calcolata dinamicamente in base al tipo selezionato. Non ci sono altre classi da concatenare, quindi non è necessario un metodo separato per gestire le classi CSS.
 
 
 }

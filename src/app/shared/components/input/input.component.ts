@@ -15,18 +15,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   templateUrl: './input.component.html',
 })
 export class Input implements ControlValueAccessor { // ControlValueAccessor interface serve a collegare il componente personalizzato con il modulo di Angular Forms
-  // TODO: sistemare e uniformare il ControlValueAccessor con PasswordInput e ProfileRow.
   label = input<string>(''); // Etichetta del campo di input
   placeholder = input<string>(''); // Testo segnaposto visualizzato all'interno del campo di input quando è vuoto
   type = input<string>('text'); // Tipo di input (ad esempio, "text", "password", "email", ecc.)
 
-  value = '';
+  value = ''; // Valore del campo di input
   onChange: any = () => {}; // Funzione di callback per notificare il cambiamento del valore
   onTouched: any = () => {} // Funzione di callback per notificare che il campo è stato toccato
 
   writeValue(val: any): void {
   this.value = val ?? ''; // assicura che val non sia mai null o undefined
-}
+  }
 
   registerOnChange(fn: any): void {
     this.onChange = fn; // Registra la funzione di callback per il cambiamento del valore
@@ -36,7 +35,7 @@ export class Input implements ControlValueAccessor { // ControlValueAccessor int
     this.onTouched = fn; // Registra la funzione di callback per il tocco del campo
   }
 
-  onInput(event: Event): void {
+  onInput(event: Event): void { //
     const inputElement = event.target as HTMLInputElement; // Ottiene l'elemento di input dall'evento
     this.value = inputElement.value; // Aggiorna il valore del campo di input
     this.onChange(this.value); // Notifica il cambiamento del valore al modulo Angular Forms

@@ -86,7 +86,7 @@ export class Register {
       },
       error: (err) => {
         if (err.status === 409) {
-          this.errorMessage.set('Username già esistente');
+          this.errorMessage.set('Username o email già esistente');
         } else {
           this.errorMessage.set(err.error?.message || 'Errore durante la registrazione');
         }

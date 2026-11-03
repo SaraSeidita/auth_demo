@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, input, signal, ViewChild } from '@angular/core';
+import { Component, effect, ElementRef, forwardRef, input, signal, viewChild, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -20,7 +20,7 @@ export class ProfileRow implements ControlValueAccessor { // ControlValueAccesso
   placeholder = input<string>(''); // Testo segnaposto visualizzato all'interno del campo di input quando è vuoto
   disabled = input<boolean>(false); // Disabilita il campo di input se impostato su true
 
-  @ViewChild('inputEl') inputElement?: ElementRef<HTMLInputElement>; // Riferimento all'elemento di input nel template
+  inputElement = viewChild<ElementRef<HTMLInputElement>>('inputEl');
 
   value = '';
   isEditing = signal(false); // Stato di modifica del campo di input
@@ -28,10 +28,20 @@ export class ProfileRow implements ControlValueAccessor { // ControlValueAccesso
   onChange: any = () => {}; // Funzione di callback per notificare il cambiamento del valore
   onTouched: any = () => {} // Funzione di callback per notificare che il campo è stato toccato
 
+  constructor() {
+    // 2. Un effetto reattivo che si attiva ogni volta che cambia il DOM o i Signal coinvolti
+    effect(() => {
+      const inputEl = this.inputElement();
+      // Se siamo in modalità modifica E l'elemento è stato appena creato nel DOM...
+      if (this.isEditing() && inputEl) {
+        inputEl.nativeElement.focus();
+      }
+    });
+  }
+  
   enableEdit(): void {
     if (this.disabled()) return;
     this.isEditing.set(true);
-    setTimeout(() => this.inputElement?.nativeElement.focus(), 0);
   }
 
   disableEdit(): void {
